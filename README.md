@@ -115,6 +115,11 @@ scores (which determines a likely chance that the annotated point should be labe
 compared class), and an image containing a histogram of IoU scores (`miou_distribution.png`) that
 were detected in the calculations.
 
+```sh
+$ ./iou_check.py --dataset /path/to/kitti/dataset/ --labels /path/to/config/file/
+```
+Where the dataset is the sequence folder, and the config file is [semantic-kitti.yaml](config/semantic-kitti.yaml).
+
 ## Citations
 
 1. **SemanticKITTI Dataset**  
@@ -127,8 +132,3 @@ were detected in the calculations.
    "Are we ready for Autonomous Driving? The KITTI Vision Benchmark Suite."  
    In *IEEE Conference on Computer Vision and Pattern Recognition (CVPR)*,  
    pages 3354–3361, 2012.
-
-```sh
-$ ./iou_check.py --dataset /path/to/kitti/dataset/ --labels /path/to/config/file/
-```
-Where the dataset is the sequence folder, and the config file is [semantic-kitti.yaml](config/semantic-kitti.yaml).
