@@ -72,7 +72,7 @@ Where the dataset is the sequence folder, and the config file is [semantic-kitti
 
 To visualize the data, use the `visualize.py` script. It will open an interactive
 opengl visualization of the pointclouds along with a spherical projection of
-each scan into a 64 x 1024 image. In this version of the 'visualize.py' script,
+each scan into a 64 x 1024 image. In this version of the `visualize.py` script,
 the point clouds that are visualized will only be point clouds within 20-metre range
 of the LiDAR origin.
 
@@ -93,8 +93,8 @@ Navigation:
 
 [intensity_curves.py](intensity_curves.py) produces an image, containing all the 
 histogram plots of remission value frequency per class. Running this script creates
-an 'intensity_curves' folder, which contains folders of all the sequences (numbered
-in numerical order), each of which contains its image (named 'XX.png', where 'XX' is
+an `intensity_curves` folder, which contains folders of all the sequences (numbered
+in numerical order), each of which contains its image (named `XX.png`, where `XX` is
 the sequence number).
 
 ```sh
@@ -105,14 +105,14 @@ Where the dataset is the sequence folder, and the config file is [semantic-kitti
 ##### Check Potential Annotation Faults
 
 [iou_check.py](iou_check.py) uses a mean Intersection over Union algorithm that takes the area,
-remission and height into consideration. Running this script creates an 'anomaly_results' folder.
-Inside the folder contains folders named after each sequence number (named 'sequence_XX', where
-'XX' is the sequence number), and within each of these folders contain folders of every comparision
-of two classes that exists in the sequence (named 'Class-1_vs_Class-2', where 'Class-1' and 'Class-2'
+remission and height into consideration. Running this script creates an `anomaly_results` folder.
+Inside the folder contains folders named after each sequence number (named `sequence_XX`, where
+`XX` is the sequence number), and within each of these folders contain folders of every comparision
+of two classes that exists in the sequence (named `Class-1_vs_Class-2`, where `Class-1` and `Class-2`
 are two different classes that exists in the sequence annotation). In each of these folders, there
-will be a top view image of the scene ('anomalies.png'), with point labels of points with high IoU 
+will be a top view image of the scene (`anomalies.png`), with point labels of points with high IoU 
 scores (which determines a likely chance that the annotated point should be labelled as the other 
-compared class), and an image containing a histogram of IoU scores ('miou_distribution.png') that
+compared class), and an image containing a histogram of IoU scores (`miou_distribution.png`) that
 were detected in the calculations.
 
 ```sh
