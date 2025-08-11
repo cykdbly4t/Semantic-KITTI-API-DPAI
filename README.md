@@ -1,4 +1,4 @@
-# API for SemanticKITTI
+# Modified SemanticKITTI API For Visualization and Detection Of Falsely Annotated Points
 
 This repository contains original Semantic-KITTI API files, with modified changes to [laserscan.py](auxiliary/laserscan.py), and new scripts ([class_counts.py](class_counts.py), [intensity_curves.py](intensity_curves.py), [iou_check.py](iou_check.py)) that will help aid in better statistic visualization and detection of falsely annotated points. 
 
@@ -57,13 +57,13 @@ found at [Semantic-KITTI API](https://github.com/PRBonn/semantic-kitti-api/tree/
 
 The algorithm for calculating the distribution of points by class in each sequence
 already exists in [content.py](content.py). This script returns the results in the
-terminal. [class_counts.py](class_counts.py) returns the values of all the sequences in a CSV file instead,
-together with the name of the classes as a reference.
+terminal. [class_counts.py](class_counts.py) returns the values of all the sequences
+in a CSV file ('scenes_overview.csv') instead, together with the name of the classes as a reference.
 
 ```sh
 $ ./class_counts.py --dataset /path/to/kitti/dataset/ --labels /path/to/config/file/
 ```
-Where the config file is [semantic-kitti.yaml](config/semantic-kitti.yaml).
+Where the dataset is the sequence folder, and the config file is [semantic-kitti.yaml](config/semantic-kitti.yaml).
 
 #### Visualization 
 
@@ -89,4 +89,33 @@ Navigation:
 - `b` is previous scan,
 - `esc` or `q` exits.
 
-##### 
+##### Remission Distribution By Class
+
+[intensity_curves.py](intensity_curves.py) produces an image, containing all the 
+histogram plots of remission value frequency per class. Running this script creates
+an 'intensity_curves' folder, which contains folders of all the sequences (numbered
+in numerical order), each of which contains its image (named 'XX.png', where 'XX' is
+the sequence number).
+
+```sh
+$ ./intensity_curves.py --dataset /path/to/kitti/dataset/ --labels /path/to/config/file/
+```
+Where the dataset is the sequence folder, and the config file is [semantic-kitti.yaml](config/semantic-kitti.yaml).
+
+##### Check Potential Annotation Faults
+
+[iou_check.py](iou_check.py) uses a mean Intersection over Union algorithm that takes the area,
+remission and height into consideration. Running this script creates an 'anomaly_results' folder.
+Inside the folder contains folders named after each sequence number (named 'sequence_XX', where
+'XX' is the sequence number), and within each of these folders contain folders of every comparision
+of two classes that exists in the sequence (named 'Class-1_vs_Class-2', where 'Class-1' and 'Class-2'
+are two different classes that exists in the sequence annotation). In each of these folders, there
+will be a top view image of the scene ('anomalies.png'), with point labels of points with high IoU 
+scores (which determines a likely chance that the annotated point should be labelled as the other 
+compared class), and an image containing a histogram of IoU scores ('miou_distribution.png') that
+were detected in the calculations.
+
+```sh
+$ ./iou_check.py --dataset /path/to/kitti/dataset/ --labels /path/to/config/file/
+```
+Where the dataset is the sequence folder, and the config file is [semantic-kitti.yaml](config/semantic-kitti.yaml).
